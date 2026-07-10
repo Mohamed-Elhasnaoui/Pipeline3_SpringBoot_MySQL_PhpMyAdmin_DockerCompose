@@ -1,5 +1,5 @@
 # Java 8
-FROM openjdk:8-jdk-alpine
+FROM eclipse-temurin:8-jre-alpine
 
 # Refer to Maven build -> finalName
 ARG JAR_FILE=target/amsDataMI.jar

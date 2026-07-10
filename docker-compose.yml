@@ -5,15 +5,15 @@ version: '3.3'
 services:
   # spring service
   spring:
-    image: mezghichdokub/ams_app_data_v8
+    image: amsibcgos
     ports:
-      - "8887:8888"
-    container_name: spring_cont
+      - "8888:8100"
+    container_name: amsibcgos_cont
     depends_on:
       - database
     restart: always
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://database:3306/amsdbfeb?useSSL=false&serverTimezone=UTC&useLegacyDatetimeCode=false&allowPublicKeyRetrieval=true
+      SPRING_DATASOURCE_URL: jdbc:mysql://database:3306/amsibcgosdb?useSSL=false&serverTimezone=UTC&useLegacyDatetimeCode=false&allowPublicKeyRetrieval=true
       SPRING_DATASOURCE_USERNAME: dhia
       SPRING_DATASOURCE_PASSWORD: dhiasaria123
     networks:
@@ -22,12 +22,12 @@ services:
   # Database Service (Mysql)
   database:
     image: mysql:latest
-    container_name: mysql_cont
+    container_name: amsibcgos_mysql_cont
     volumes:
       - db_ams_v3:/var/lib/mysql 
     restart: always
     environment:
-      MYSQL_DATABASE: amsdbfeb
+      MYSQL_DATABASE: amsibcgosdb
       MYSQL_USER: dhia
       MYSQL_PASSWORD: dhiasaria123
       MYSQL_ROOT_PASSWORD: root
@@ -37,12 +37,12 @@ services:
   # phpmyadmin Service 
   phpmyadmin:
     image: phpmyadmin
-    container_name: pmadmin_cont
+    container_name: amsibcgos_pmadmin_cont
     depends_on:
       - database
     restart: always
     ports:
-      - 8086:80
+      - 8088:80
     environment:
       - PMA_ARBITRARY=1
     networks:
